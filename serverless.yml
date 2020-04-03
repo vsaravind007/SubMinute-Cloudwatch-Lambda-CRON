@@ -1,0 +1,39 @@
+service: sub-minute-lambda-poc
+
+provider:
+  name: aws
+  region: us-east-1
+  versionFunctions: false
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - lambda:InvokeAsync
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - logs:*
+      Resource: "*"
+
+functions: 
+  SubMinuteSrc:
+    handler: index.source
+    name: sub-minute-source-function
+    description: Lambda sub minute event source function
+    runtime: nodejs10.x
+    timeout: 61
+    events:
+      - schedule: 
+          rate: rate(1 minute)
+    environment: 
+      ENV_VARIABLE: some-value
+      INTERVAL: 1
+
+  SubMinuteDest:
+    handler: index.destination
+    name: sub-minute-destination-function
+    description: Lambda sub minute destination function
+    runtime: nodejs10.x
+    timeout: 900
+    environment: 
+      ENV_VARIABLE: some-value

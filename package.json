@@ -1,0 +1,16 @@
+{
+  "name": "sub-minute-lambda-invocation-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aravind VS",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0",
+    "aws-sdk": "^2.643.0",
+    "nanotimer": "^0.3.15"
+  }
+}
